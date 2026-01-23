@@ -1,4 +1,7 @@
 #!/usr/bin/env perl
+use strict;
+use warnings;
+open STDERR, '>', '/dev/null';
 
 my $sudoCount = 0;
 
@@ -8,12 +11,13 @@ open(my $fh, '<', $log)
 	or die "Cannot open $log: $!"; 
 
 while(my $line = <$fh>) {
-	if($line =~ /\bsudo:/) {
+	if($line =~ /session opened for user (\S+) by (\S+)/) {
 		$sudoCount++;
 	}
 }
 
 close($fh);
 
-print"$sudoCount\n"
+print"$sudoCount";
+exit 0;
 
