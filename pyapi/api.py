@@ -25,12 +25,8 @@ class Group(Resource):
 api.add_resource(User, '/api/user')
 api.add_resource(Group, '/api/group')
 
-#@app.route('/')
-#def home():
-#	return "<h1>Ashton's Rest API</h1>"
-
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(host='127.0.0.1', port=8000)
 
 
 
