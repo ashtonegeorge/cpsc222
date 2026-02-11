@@ -22,6 +22,10 @@ class Group(Resource):
 			abort(401, message="Incorrect credentials")
 		return {'1': 'groupname1', '2': 'groupname2'} 
 
+@app.route("/")
+def home():
+	return "<iframe src='https://www.ashtonegeorge.com' style='width:100vw;height:100vh;margin:0;border:0;'>Ashton&apos;s Website</iframe>"
+
 api.add_resource(User, '/api/user')
 api.add_resource(Group, '/api/group')
 
