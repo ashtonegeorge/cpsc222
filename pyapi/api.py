@@ -26,6 +26,10 @@ class Group(Resource):
 def home():
 	return "<iframe src='https://www.ashtonegeorge.com' style='width:100vw;height:100vh;margin:0;border:0;'>Ashton&apos;s Website</iframe>"
 
+@app.route("/<path:path>")
+def catch(path):
+	return home()
+
 api.add_resource(User, '/api/user')
 api.add_resource(Group, '/api/group')
 
