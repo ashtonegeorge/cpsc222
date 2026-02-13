@@ -18,28 +18,23 @@ def verify_password(username, password): # example login command: curl -u "usern
 @app.route("/api/user", methods=['POST'])
 @auth.login_required
 def user_list():
-	if request.method == 'POST':
-		users = {}
-		with open("/etc/passwd", "r") as file:
-			for line in file:
-				info_parts = line.strip().split(":")
-				username = info_parts[0]
-				id = info_parts[2]
-				users[id] = username
-		return jsonify(users)
+	return list("/etc/passwd")
 
 @app.route("/api/group", methods=['POST'])
 @auth.login_required
 def group_list():
+        return list("/etc/group")
+
+def list(path):
 	if request.method == 'POST':
-		groups = {}
-		with open("/etc/group", "r") as file:
+		dict = {}
+		with open(path, "r") as file:
 			for line in file:
 				info_parts = line.strip().split(":")
-				group_name = info_parts[0]
+				name = info_parts[0]
 				id = info_parts[2]
-				groups[id] = group_name
-		return jsonify(groups)
+				dict[id] = name
+		return jsonify(dict)
 
 @app.route("/")
 def home():
