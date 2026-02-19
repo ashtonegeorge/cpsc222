@@ -1,0 +1,16 @@
+[Unit]
+Description=Flask REST API
+After=network.target
+
+[Service]
+User=user
+Group=www-data
+WorkingDirectory=/home/user/cpsc222/pyapi
+Environment="/home/user/cpsc222/pyapi/.venv/bin"
+ExecStart=/home/user/cpsc222/pyapi/.venv/bin/python api.py
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
